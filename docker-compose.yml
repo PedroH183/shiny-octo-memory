@@ -14,8 +14,8 @@ services:
       - S3_BUCKET=${S3_BUCKET}
     volumes:
       - .:/app
-    depends_on:
-      - localstack
+    #depends_on:
+      #- localstack
 
   #localstack:
     #image: localstack/localstack:latest
