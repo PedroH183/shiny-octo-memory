@@ -1,0 +1,27 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=sa-east-1
+      - RDS_HOST=${RDS_HOST}
+      - RDS_DB=${RDS_DB}
+      - RDS_USER=${RDS_USER}
+      - RDS_PASSWORD=${RDS_PASSWORD}
+      - S3_BUCKET=${S3_BUCKET}
+    volumes:
+      - .:/app
+    depends_on:
+      - localstack
+
+  #localstack:
+    #image: localstack/localstack:latest
+    #ports:
+      #- "4566:4566"
+    #environment:
+      #- SERVICES=dynamodb,s3
+      #- DEBUG=1
+      #- DATA_DIR=/tmp/localstack/data
